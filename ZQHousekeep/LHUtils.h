@@ -24,5 +24,10 @@ typedef enum : NSUInteger {
 
 //拨打电话
 +(void)callTelephoneWithString:(NSString *)mobile;
-    
+
++ (void)changeColorViewWithView:(UIView *)view;
+
+
++ (void)addShadowWithView:(UIView *)view;
+
 @end

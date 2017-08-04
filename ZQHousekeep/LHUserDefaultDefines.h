@@ -9,5 +9,7 @@
 #ifndef LHUserDefaultDefines_h
 #define LHUserDefaultDefines_h
 
+#define key_currentUserName @"currentUserName"
+
 
 #endif /* LHUserDefaultDefines_h */

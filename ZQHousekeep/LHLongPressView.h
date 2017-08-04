@@ -10,4 +10,8 @@
 
 @interface LHLongPressView : UIView
 
+@property (nonatomic,copy)NSArray *imageNameArray;
+
+- (instancetype)initWithFrame:(CGRect)frame andImageArray:(NSArray *)array;
+
 @end

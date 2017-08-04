@@ -7,8 +7,11 @@
 //
 
 #import "LHNoticeViewController.h"
+#import "LHLongPressView.h"
 
 @interface LHNoticeViewController ()
+
+@property (nonatomic,strong)LHLongPressView *longPressView;
 
 @end
 
@@ -16,7 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Notice";
+    [self.view addSubview:self.longPressView];
     // Do any additional setup after loading the view.
+}
+
+- (LHLongPressView *)longPressView{
+    if (!_longPressView) {
+        _longPressView = [[LHLongPressView alloc] initWithFrame:CGRectMake(kBorderMargin, kHeightIphone7(35),kScreenSize.width-kBorderMargin*2 , kHeightIphone7(220)) andImageArray:@[@"1.jpg",@"2.jpg",@"3.jpg"]];
+    }
+    return _longPressView;
 }
 
 - (void)didReceiveMemoryWarning {

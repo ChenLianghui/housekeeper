@@ -63,6 +63,13 @@
         [_dicOfheight setObject:@(self.sectionInset.top) forKey:[NSString stringWithFormat:@"%ld",i]];
         
     }
+    
+    [_array removeAllObjects];
+    
+    //头部视图
+    UICollectionViewLayoutAttributes * layoutHeader = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader withIndexPath:[NSIndexPath indexPathWithIndex:0]];
+    layoutHeader.frame =CGRectMake(0,0, kScreenSize.width, self.sectionInset.top);
+    [_array addObject:layoutHeader];
     //得到每个item的属性值进行存储
     for (NSInteger i = 0 ; i < count; i ++) {
         
@@ -158,7 +165,6 @@
     }
     
 }
-
 
 
 

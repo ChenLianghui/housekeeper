@@ -14,6 +14,8 @@
 
 //C2 背景色
 + (UIColor *)backgroundColor;
+//图标灰
++ (UIColor *)grayIconColor;
 //C3 导航栏背景色
 + (UIColor *)naviBackColor;
 //C4 应用主题色

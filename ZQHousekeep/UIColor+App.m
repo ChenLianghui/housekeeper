@@ -11,17 +11,22 @@
 @implementation UIColor (App)
 //背景色
 + (UIColor *)backgroundColor {
-    return [UIColor colorWithHex:0xf8f9fa];
+    return [UIColor colorWithRed:234/255.0 green:235/255.0 blue:236/255.0 alpha:1.0];
+    
+}
+
++ (UIColor *)grayIconColor{
+    return [UIColor colorWithHex:0x646464];
 }
 
 //导航栏背景色
 + (UIColor *)naviBackColor {
-    return [UIColor colorWithHex:0x5F5964];
+    return ZQColorMaker(255, 255, 255, 1.0);
 }
 
 //应用主题色
 + (UIColor *)appThemeColor {
-    return [UIColor colorWithHex:0x10B553];
+    return [UIColor colorWithHex:0x47B451];
 }
 
 //高亮主题色
@@ -51,7 +56,7 @@
 
 //字体灰色
 + (UIColor *)grayFontColor {
-    return [UIColor colorWithHex:0x969696];
+    return [UIColor colorWithHex:0x646464];
 }
 
 //字体浅灰色
@@ -68,5 +73,7 @@
 + (UIColor *)darkLineColor {
     return [UIColor colorWithHex:0x3d4457];
 }
+
+
 
 @end

@@ -10,4 +10,9 @@
 
 @interface LHHomeCollectionModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *imageName;
+@property (nonatomic,copy)NSString *titleStr;
+@property (nonatomic,copy)NSString *numberStr;
+//@property (nonatomic,assign)BOOL isBig;
+
 @end

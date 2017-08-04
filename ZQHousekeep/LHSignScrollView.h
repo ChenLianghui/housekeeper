@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ClickSecondTableviewBlock)();
+
 @interface LHSignScrollView : UIScrollView
+
+@property (nonatomic,strong)NSIndexPath *currentIndexPath1;
+@property (nonatomic,strong)NSIndexPath *currentIndexPath2;
+@property (nonatomic,strong)NSIndexPath *currentIndexPath3;
+@property (nonatomic,copy) ClickSecondTableviewBlock block;
 
 @end

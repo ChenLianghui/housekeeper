@@ -10,4 +10,7 @@
 
 @interface LHStepProgressView : UIView
 
+@property (nonatomic,assign)int step;
+
+
 @end

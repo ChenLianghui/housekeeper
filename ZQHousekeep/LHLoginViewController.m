@@ -8,10 +8,9 @@
 
 #import "LHLoginViewController.h"
 #import "LHLoginView.h"
-#import "LHRegistViewController.h"
-#import "LHLostPassWordOneViewController.h"
-#import "LHTabBarViewController.h"
-#import "LHLoginService.h"
+#import "ZQSignInOneViewController.h"
+#import "LHSignInViewController.h"
+#import "LHLostPasswordOneViewController.h"
 
 @interface LHLoginViewController ()<LHLoginViewDelegate>
 
@@ -42,6 +41,7 @@
     [self.view insertSubview:self.mainView aboveSubview:self.bgImageView];
     [self.mainView addSubview:self.loginView];
     [self.mainView addSubview:self.iconImageView];
+    self.whiteView.hidden = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -63,24 +63,8 @@
         {
             //点击登录按钮
             NSLog(@"登录");
-            __weak typeof(self)weakSelf = self;
-            [[LHLoginService sharedInstance] loginWithUserName:self.loginView.userTextField.text andPassword:self.loginView.passwordTextField.text completed:^(NSURLSessionTask *task, id responseObject) {
-                NSLog(@"responseObject:%@",responseObject);
-                [weakSelf showSucceed:NSLocalizedString(@"登录成功", nil) complete:^{
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if (weakSelf.isFirstComein) {
-                            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-                            LHTabBarViewController *tabarVC = [[LHTabBarViewController alloc] init];
-                            keyWindow.rootViewController = tabarVC;
-                            [keyWindow makeKeyAndVisible];
-                        }else{
-                            [self dismissViewControllerAnimated:YES completion:nil];
-                        }
-                    });
-                }];
-            } failure:^(NSURLSessionTask *operation, NSError *error) {
-                
-            }];
+            ZQSignInOneViewController *signVC = [[ZQSignInOneViewController alloc] init];
+            [self.navigationController pushViewController:signVC animated:YES];
             
         }
             break;
@@ -88,16 +72,16 @@
         {
             //点击注册按钮
             NSLog(@"注册");
-            LHRegistViewController *RegistVC = [[LHRegistViewController alloc] init];
-            [self.navigationController pushViewController:RegistVC animated:YES];
+            LHSignInViewController *signVC = [[LHSignInViewController alloc] init];
+            [self.navigationController pushViewController:signVC animated:YES];
         }
             break;
         case 32:
         {
             //点击忘记密码按钮
             NSLog(@"忘记密码");
-            LHLostPassWordOneViewController *oneVC = [[LHLostPassWordOneViewController alloc] init];
-            [self.navigationController pushViewController:oneVC animated:YES];
+            LHLostPasswordOneViewController *lostPassWordVC = [[LHLostPasswordOneViewController alloc] init];
+            [self.navigationController pushViewController:lostPassWordVC animated:YES];
         }
             break;
         default:
@@ -108,6 +92,8 @@
 - (LHLoginView *)loginView{
     if (!_loginView) {
         _loginView = [[LHLoginView alloc] init];
+        CGPoint center = self.view.center;
+        center.y += kHeightIphone7(30);
         _loginView.center = self.view.center;
         _loginView.delegate = self;
     }
@@ -126,8 +112,8 @@
     if (!_iconImageView) {
         _iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_logo"]];
         _iconImageView.frame = CGRectMake(0, 0, kWidthIphone7(100), kWidthIphone7(100));
-        CGPoint center = self.view.center;
-        center.y -= kHeightIphone7(90+70);
+        CGPoint center = self.loginView.center;
+        center.y -= kHeightIphone7(170);
         _iconImageView.center = center;
     }
     return _iconImageView;

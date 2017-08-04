@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LHHomeMenuView : UIView
+@protocol LHHomeMenuViewDelegate <NSObject>
+
+- (void)ClickedMenuWithTheTag:(NSInteger)tag;
 
 @end
+
+@interface LHHomeMenuView : UIView
+
+@property (nonatomic,weak)id<LHHomeMenuViewDelegate> delegate;
+
+@end
+
+

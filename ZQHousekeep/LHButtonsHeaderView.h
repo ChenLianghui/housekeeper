@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LHButtonsHeaderViewDelegate <NSObject>
+
+- (void)buttonClickedWithIndex:(NSInteger )index;
+
+@end
+
 @interface LHButtonsHeaderView : UIView
+
+@property (nonatomic,copy)NSArray *titleArray;
+@property (nonatomic,assign)NSInteger currentIndex;
+@property (nonatomic,weak)id<LHButtonsHeaderViewDelegate> delegate;
 
 @end

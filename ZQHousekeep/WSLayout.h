@@ -28,6 +28,7 @@ typedef CGFloat(^HeightBlock)(NSIndexPath *indexPath , CGFloat width);
  */
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
 
+@property (nonatomic, strong) UICollectionViewLayoutAttributes *header;
 /**
  *  对象方法
  *

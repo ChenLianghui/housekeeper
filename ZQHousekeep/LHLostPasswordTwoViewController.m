@@ -7,6 +7,7 @@
 //
 
 #import "LHLostPasswordTwoViewController.h"
+#import "LHLoginViewController.h"
 
 @interface LHLostPasswordTwoViewController ()
 
@@ -16,7 +17,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Lost Password";
+    self.titleArray = @[@"Password",@"again"];
+    self.placeholderArray = @[@"Please enter your new password",@"Please enter again the password"];
+    self.isHadVcode = NO;
+    self.isLostCodeOne = NO;
     // Do any additional setup after loading the view.
+}
+
+- (void)ActionButtonClicked{
+    if ([LHUtils isEmptyStr:self.firsteTF.text]) {
+        [self showFailed:@"Please enter your new password"];
+    }else if ([LHUtils isEmptyStr:self.secondTF.text]){
+        [self showFailed:@"Please enter again your new password"];
+    }else{
+        if ([self.firsteTF.text isEqualToString:self.secondTF.text]) {
+            for (UIViewController *viewController in self.navigationController.viewControllers) {
+                if ([viewController isKindOfClass:[LHLoginViewController class]]) {
+                    [self.navigationController popToViewController:viewController animated:YES];
+                }
+            }
+        }else{
+            [self showFailed:@"Two input password is not the same"];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {

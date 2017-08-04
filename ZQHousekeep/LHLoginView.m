@@ -7,7 +7,6 @@
 //
 
 #import "LHLoginView.h"
-#import "JXTAlertManagerHeader.h"
 
 @interface LHLoginView ()
 
@@ -21,7 +20,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.bounds = CGRectMake(0, 0, kScreenSize.width, kHeightIphone7(180));
+        self.bounds = CGRectMake(0, 0, kScreenSize.width, kHeightIphone7(200));
 //        self.backgroundColor = [UIColor redColor];
         [self initSubViews];
     }
@@ -34,10 +33,12 @@
     _userTextField.leftView = leftImageView;
     _userTextField.leftViewMode = UITextFieldViewModeAlways;
     _userTextField.clearButtonMode = UITextFieldViewModeAlways;
-    _userTextField.placeholder = NSLocalizedString(@"请输入用户名", nil);
-    [_userTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    _userTextField.textColor = [UIColor whiteColor];
-    _userTextField.tintColor = [UIColor whiteColor];
+    _userTextField.placeholder = @"Please enter the username";
+    _userTextField.backgroundColor = [UIColor whiteColor];
+    _userTextField.textAlignment = NSTextAlignmentCenter;
+    [_userTextField setValue:[UIColor grayFontColor] forKeyPath:@"_placeholderLabel.textColor"];
+    _userTextField.textColor = [UIColor grayFontColor];
+    _userTextField.tintColor = [UIColor grayFontColor];
     _userTextField.font = [UIFont appFontThree];
     _userTextField.layer.masksToBounds = YES;
     _userTextField.layer.cornerRadius = kHeightIphone7(20);
@@ -51,12 +52,15 @@
     _passwordTextField = [[LHTextField alloc] init];
     UIImageView *leftImageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_password"]];
     _passwordTextField.leftView = leftImageView2;
+    _passwordTextField.backgroundColor = [UIColor whiteColor];
     _passwordTextField.leftViewMode = UITextFieldViewModeAlways;
     _passwordTextField.clearButtonMode = UITextFieldViewModeAlways;
-    _passwordTextField.placeholder = NSLocalizedString(@"请输入密码", nil);
-    [_passwordTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    _passwordTextField.textColor = [UIColor whiteColor];
-    _passwordTextField.tintColor = [UIColor whiteColor];
+    _passwordTextField.placeholder = @"Please enter the password";
+    _passwordTextField.textAlignment = NSTextAlignmentCenter;
+    
+    [_passwordTextField setValue:[UIColor grayFontColor] forKeyPath:@"_placeholderLabel.textColor"];
+    _passwordTextField.textColor = [UIColor grayFontColor];
+    _passwordTextField.tintColor = [UIColor grayFontColor];
     _passwordTextField.font = [UIFont appFontThree];
     _passwordTextField.secureTextEntry = YES;
     _passwordTextField.layer.masksToBounds = YES;
@@ -66,7 +70,7 @@
     [self addSubview:_passwordTextField];
     
     _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_loginButton setTitle:NSLocalizedString(@"登录", nil) forState:UIControlStateNormal];
+    [_loginButton setTitle:@"Log in" forState:UIControlStateNormal];
     [_loginButton setBackgroundColor:[UIColor appThemeColor]];
     _loginButton.layer.masksToBounds = YES;
     _loginButton.tag = 30;
@@ -76,7 +80,8 @@
     [self addSubview:_loginButton];
     
     _registButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_registButton setTitle:NSLocalizedString(@"注册新账号", nil) forState:UIControlStateNormal];
+    [_registButton setTitle:@"Sign in" forState:UIControlStateNormal];
+    [_registButton setTitleColor:[UIColor grayFontColor] forState:UIControlStateNormal];
     _registButton.tag = 31;
     _registButton.titleLabel.font = [UIFont appFontFour];
     _registButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -84,7 +89,8 @@
     [self addSubview:_registButton];
     
     _lostPWButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_lostPWButton setTitle:NSLocalizedString(@"忘记密码", nil) forState:UIControlStateNormal];
+    [_lostPWButton setTitle:@"Forgot password?" forState:UIControlStateNormal];
+    [_lostPWButton setTitleColor:[UIColor grayFontColor] forState:UIControlStateNormal];
     _lostPWButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     _lostPWButton.titleLabel.font = [UIFont appFontFour];
     _lostPWButton.tag = 32;
@@ -99,14 +105,14 @@
     }];
     
     [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.userTextField.bottom).offset(kHeightIphone7(15));
+        make.top.equalTo(self.userTextField.bottom).offset(kHeightIphone7(20));
         make.height.equalTo(self.userTextField.height);
         make.centerX.equalTo(self.centerX);
         make.left.equalTo(self.userTextField.left);
     }];
     
     [_loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.passwordTextField.bottom).offset(kHeightIphone7(15));
+        make.top.equalTo(self.passwordTextField.bottom).offset(kHeightIphone7(20));
         make.height.equalTo(self.userTextField.height);
         make.centerX.equalTo(self.centerX);
         make.left.equalTo(self.userTextField.left);
@@ -116,13 +122,13 @@
         make.left.equalTo(self.loginButton.left);
         make.width.equalTo(kWidthIphone7(100));
         make.height.equalTo(kHeightIphone7(20));
-        make.top.equalTo(self.loginButton.bottom).offset(kHeightIphone7(10));
+        make.top.equalTo(self.loginButton.bottom).offset(kHeightIphone7(15));
     }];
     
     [_lostPWButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.loginButton.bottom).offset(kHeightIphone7(10));
+        make.top.equalTo(self.loginButton.bottom).offset(kHeightIphone7(15));
         make.right.equalTo(self.right).offset(-kWidthIphone7(50));
-        make.width.equalTo(self.registButton.width);
+        make.width.equalTo(kWidthIphone7(150));
         make.height.equalTo(self.registButton.height);
     }];
     
@@ -131,23 +137,18 @@
 }
 
 - (void)ButtonClicked:(UIButton *)button{
-    if (button.tag == 30) {
-        if ([LHUtils isEmptyStr:_userTextField.text]) {
-            [(UIViewController *)self.delegate jxt_showAlertWithTitle:NSLocalizedString(@"请输入用户名", nil) message:nil appearanceProcess:^(JXTAlertController * _Nonnull alertMaker) {
-                alertMaker.toastStyleDuration = 1;
-                
-            } actionsBlock:NULL];
-            return;
-        }else{
-            if ([LHUtils isEmptyStr:_passwordTextField.text]) {
-                [(UIViewController *)self.delegate jxt_showAlertWithTitle:NSLocalizedString(@"请输入密码", nil) message:nil appearanceProcess:^(JXTAlertController * _Nonnull alertMaker) {
-                    alertMaker.toastStyleDuration = 1;
-                    
-                } actionsBlock:NULL];
-                return;
-            }
-        }
-    }
+//    if (button.tag == 30) {
+//        if ([LHUtils isEmptyStr:_userTextField.text]) {
+//            [(UIViewController *)self.delegate showFailed:@"Please enter your username"];
+//            return;
+//        }else{
+//            if ([LHUtils isEmptyStr:_passwordTextField.text]) {
+//                [(UIViewController *)self.delegate showFailed:@"Please enter your password"];
+//                return;
+//            }
+//            
+//        }
+//    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(ButtonHadClickedWithTag:)]) {
         [self.delegate ButtonHadClickedWithTag:button.tag];
     }

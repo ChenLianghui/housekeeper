@@ -16,7 +16,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.navigationBar.translucent = NO;
+    self.navigationBar.barTintColor = [UIColor whiteColor];
+    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName, nil]];
+    //去掉透明后导航栏下边的黑边
+    [self.navigationBar setShadowImage:[[UIImage alloc] init]];
+    [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    [[self.navigationBar subviews] objectAtIndex:0].alpha = 0;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
 }
 
 - (void)didReceiveMemoryWarning {

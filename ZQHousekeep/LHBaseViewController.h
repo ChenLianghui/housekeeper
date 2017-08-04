@@ -12,6 +12,11 @@ typedef void(^myBlock)();
 
 @interface LHBaseViewController : UIViewController
 
+@property (nonatomic,strong)UIView *whiteView;
+@property (nonatomic,assign)BOOL isTwoTitle;
+@property (nonatomic,strong)UILabel *superTitle;
+@property (nonatomic,strong)UILabel *subTitle;
+
 - (void)addTitleViewWithName:(NSString *)name;
 - (void)addTitleViewWithName:(NSString *)name textColor:(UIColor *)color;
 - (void)addItemWithName:(NSString *)name isLeft:(BOOL)isleft WithBlock:(myBlock)block;

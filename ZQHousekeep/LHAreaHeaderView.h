@@ -1,5 +1,5 @@
 //
-//  LHTabelHeaderView.h
+//  LHAreaHeaderView.h
 //  ZQHousekeep
 //
 //  Created by 陈良辉 on 2017/6/22.
@@ -10,8 +10,6 @@
 
 @interface LHAreaHeaderView : UIView
 
-@property (nonatomic,copy)NSString *titleStr;
-//@property (nonatomic,strong)UITableView *tableView;
-
+@property (nonatomic,strong)UILabel *titleLabel;
 
 @end

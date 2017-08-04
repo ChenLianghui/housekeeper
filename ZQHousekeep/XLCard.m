@@ -11,7 +11,8 @@
 
 @interface XLCard () {
     UIImageView *_imageView;
-    UILabel *_textLabel;
+    UILabel *_titleLabel;
+    UILabel *_desLabel;
 }
 @end
 
@@ -25,9 +26,10 @@
 }
 
 - (void)buildUI {
-    self.layer.cornerRadius = 10.0f;
-    self.layer.masksToBounds = true;
+//    self.layer.cornerRadius = 10.0f;
+//    self.layer.masksToBounds = true;
     self.backgroundColor = [UIColor whiteColor];
+    [LHUtils addShadowWithView:self];
     
 //    CGFloat labelHeight = self.bounds.size.height * 0.20f;
     CGFloat imageViewHeight = self.bounds.size.height;
@@ -35,6 +37,8 @@
 //    _imageView.center = self.center;
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     _imageView.layer.masksToBounds = true;
+    _imageView.layer.cornerRadius = kWidthIphone7(8);
+    
     [self addSubview:_imageView];
     
 //    _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageViewHeight, self.bounds.size.width, labelHeight)];
@@ -43,6 +47,43 @@
 //    _textLabel.textAlignment = NSTextAlignmentCenter;
 //    _textLabel.adjustsFontSizeToFitWidth = true;
 //    [self addSubview:_textLabel];
+    _titleLabel = [UILabel new];
+    _titleLabel.text = @"2017.06.21 Notice";
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.font = [UIFont appFontTwo];
+    _titleLabel.textColor = [UIColor whiteColor];
+    _titleLabel.shadowColor = [UIColor blackColor];
+    _titleLabel.shadowOffset = CGSizeMake(1, 1);
+    [self addSubview:_titleLabel];
+    
+    _desLabel = [UILabel new];
+    _desLabel.text = @"We will look into how to build communities that are able to quickly respond to disaster risks.";
+    _desLabel.numberOfLines = 0;
+    _desLabel.textAlignment = NSTextAlignmentCenter;
+    _desLabel.font = [UIFont appFontThree];
+    _desLabel.textColor = [UIColor whiteColor];
+    _desLabel.shadowColor = [UIColor blackColor];
+    _desLabel.shadowOffset = CGSizeMake(1, 1);
+    [self addSubview:_desLabel];
+    
+    [_titleLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(kBorderMargin);
+        make.top.equalTo(kHeightIphone7(10));
+        make.centerX.equalTo(self.contentView.centerX);
+        make.height.equalTo(kHeightIphone7(30));
+        
+    }];
+    
+    [_desLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_titleLabel.left);
+        make.centerX.equalTo(_titleLabel.centerX);
+        make.top.equalTo(_titleLabel.bottom).offset(kHeightIphone7(0));
+        make.height.equalTo(kHeightIphone7(60));
+    }];
+    
+//    UIVisualEffectView *visuleffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+//    visuleffectView.frame = _imageView.bounds;
+//    [_imageView addSubview:visuleffectView];
 }
 
 -(void)setItem:(XLCardItem *)item {

@@ -143,7 +143,8 @@ static float CardHeightScale = 0.8f;
 
 //卡片间隔
 - (float)cellMargin {
-    return (self.bounds.size.width - [self cellWidth])/4;
+//    return (self.bounds.size.width - [self cellWidth])/4;
+    return kWidthIphone7(20);
 }
 
 //设置左右缩进

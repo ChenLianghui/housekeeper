@@ -34,6 +34,10 @@
     return [UIFont systemFontOfSize:kWidthIphone7(12)];
 }
 
++ (UIFont*)appFontFive{
+    return [UIFont systemFontOfSize:kWidthIphone7(10)];
+}
+
 + (UIFont *)appFontOfSize:(CGFloat)size {
     return [UIFont fontWithName:@"HiraKakuProN-W3" size:size];
 }

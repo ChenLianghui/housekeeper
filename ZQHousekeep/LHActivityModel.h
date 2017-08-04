@@ -10,4 +10,9 @@
 
 @interface LHActivityModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *imageName;
+@property (nonatomic,copy)NSString *titleStr;
+@property (nonatomic,copy)NSString *hotStr;
+@property (nonatomic,copy)NSString *desStr;
+
 @end

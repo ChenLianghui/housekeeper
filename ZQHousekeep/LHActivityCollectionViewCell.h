@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHActivityModel.h"
 
 @interface LHActivityCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic,strong)LHActivityModel *model;
 
 @end

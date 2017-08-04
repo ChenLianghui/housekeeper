@@ -25,6 +25,7 @@
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }];
     }
+    [self.view addSubview:self.whiteView];
     // Do any additional setup after loading the view.
 }
 
@@ -45,8 +46,8 @@
     button.titleLabel.font = [UIFont systemFontOfSize:15.0];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
-    //button.tintColor = [UIColor blackColor];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    button.tintColor = [UIColor blackColor];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     if (isleft) {
         
         button.imageEdgeInsets = UIEdgeInsetsMake(0, -32, 0, 0);
@@ -99,6 +100,49 @@
     }
 }
 
+- (UIView *)whiteView{
+    if (!_whiteView) {
+        _whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, kHeightIphone7(76))];
+        _whiteView.backgroundColor = [UIColor whiteColor];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, kHeightIphone7(76)-1, kScreenSize.width, kHeightIphone7(1))];
+        lineView.backgroundColor = [UIColor grayLineColor];
+        [_whiteView addSubview:lineView];
+    }
+    return _whiteView;
+}
+
+- (void)setIsTwoTitle:(BOOL)isTwoTitle{
+    _isTwoTitle = isTwoTitle;
+    if (isTwoTitle) {
+        UIView *titleView = [UIView new];
+        titleView.bounds = CGRectMake(0, 0, kWidthIphone7(150), 44);
+        _superTitle = [UILabel new];
+        _superTitle.textColor = [UIColor appThemeColor];
+        _superTitle.textAlignment = NSTextAlignmentCenter;
+        _superTitle.font = [UIFont appFontOne];
+        [titleView addSubview:_superTitle];
+        
+        _subTitle = [UILabel new];
+        _subTitle.textColor = [UIColor blackColor];
+        _subTitle.textAlignment = NSTextAlignmentCenter;
+        _subTitle.font = [UIFont appFontThree];
+        [titleView addSubview:_subTitle];
+        
+        [_superTitle makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(titleView.top);
+            make.centerX.equalTo(titleView.centerX);
+            make.height.equalTo(24);
+            make.width.equalTo(100);
+        }];
+        [_subTitle makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_superTitle.bottom);
+            make.centerX.equalTo(titleView.centerX);
+            make.height.equalTo(20);
+            make.width.equalTo(_superTitle.width);
+        }];
+        self.navigationItem.titleView = titleView;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

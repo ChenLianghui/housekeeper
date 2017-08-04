@@ -19,6 +19,8 @@
 //字体F4
 + (UIFont*)appFontFour;
 
++ (UIFont*)appFontFive;
+
 + (UIFont*)appFontOfSize:(CGFloat)size;
 
 @end

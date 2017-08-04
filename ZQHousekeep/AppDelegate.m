@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ZQTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self comeInToApp];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -47,5 +52,9 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)comeInToApp{
+    ZQTabBarController *tabbarVC = [[ZQTabBarController alloc] init];
+    self.window.rootViewController = tabbarVC;
+}
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "LHLostPasswordOneViewController.h"
+#import "UIButton+CountDown.h"
+#import "LHLostPasswordTwoViewController.h"
 
 @interface LHLostPasswordOneViewController ()
 
@@ -16,7 +18,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Lost Password";
+    self.titleArray = @[@"E-mail",@"Code"];
+    self.placeholderArray = @[@"Please enter your e-mail",@""];
+    self.isHadVcode = YES;
+    self.isLostCodeOne = YES;
     // Do any additional setup after loading the view.
+}
+
+- (void)vcodeButtonClicked:(UIButton *)button{
+    [button countDownFromTime:60 title:@"send code" unitTitle:@"s" mainColor:[UIColor clearColor] countColor:[UIColor clearColor]];
+    NSLog(@"vcode");
+}
+
+- (void)ActionButtonClicked{
+    NSLog(@"sign");
+    if ([LHUtils isEmptyStr:self.firsteTF.text]) {
+        [self showFailed:@"Please enter your Email"];
+    }else if ([LHUtils isEmptyStr:self.secondTF.text]){
+        [self showFailed:@"Please enter your vcode"];
+    }else{
+        LHLostPasswordTwoViewController *lostPWTwoVC = [[LHLostPasswordTwoViewController alloc] init];
+        [self.navigationController pushViewController:lostPWTwoVC animated:YES];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
