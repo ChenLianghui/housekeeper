@@ -7,5 +7,6 @@ pod "MBProgressHUD"
 pod "SDWebImage"
 pod 'MJRefresh'
 pod 'IQKeyboardManager'
+pod 'pop'
 
 end

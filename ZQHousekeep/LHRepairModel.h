@@ -10,4 +10,9 @@
 
 @interface LHRepairModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *numberStr;
+@property (nonatomic,copy)NSString *stateStr;
+@property (nonatomic,copy)NSString *titleStr;
+@property (nonatomic,copy)NSArray *imageViewArray;
+
 @end

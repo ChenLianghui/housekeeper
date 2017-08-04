@@ -222,7 +222,7 @@
 - (UIButton *)NextButton{
     if (!_NextButton) {
         _NextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _NextButton.frame = CGRectMake(kBorderMargin, kScreenSize.height-kHeightIphone7(64), kAreaWidth, kHeightIphone7(40));
+        _NextButton.frame = CGRectMake(kBorderMargin, kScreenSize.height-64, kAreaWidth, kHeightIphone7(40));
         _NextButton.backgroundColor = [UIColor appThemeColor];
         [_NextButton setTitle:@"Next" forState:UIControlStateNormal];
         [LHUtils addShadowWithView:_NextButton];

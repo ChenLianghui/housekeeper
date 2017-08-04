@@ -7,11 +7,16 @@
 //
 
 #import "LHNoticeViewController.h"
-#import "LHLongPressView.h"
+#import "SwipeView.h"
 
-@interface LHNoticeViewController ()
 
-@property (nonatomic,strong)LHLongPressView *longPressView;
+
+#define kImageWidth (kScreenSize.width-2*kBorderMargin)
+@interface LHNoticeViewController ()<SwipeDelegate,SwipeViewDataSource>
+
+@property (nonatomic,copy)NSArray *imageNameArray;
+@property (nonatomic,strong) SwipeView *swipeView;
+@property (assign, nonatomic) NSInteger count;
 
 @end
 
@@ -20,15 +25,91 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Notice";
-    [self.view addSubview:self.longPressView];
+    self.count = self.imageNameArray.count;
+    [self.view addSubview:self.swipeView];
+//    [self.view addSubview:self.longPressView];
     // Do any additional setup after loading the view.
 }
 
-- (LHLongPressView *)longPressView{
-    if (!_longPressView) {
-        _longPressView = [[LHLongPressView alloc] initWithFrame:CGRectMake(kBorderMargin, kHeightIphone7(35),kScreenSize.width-kBorderMargin*2 , kHeightIphone7(220)) andImageArray:@[@"1.jpg",@"2.jpg",@"3.jpg"]];
+- (NSUInteger)swipeViewNumberOfCards:(SwipeView *)swipeView{
+    return self.imageNameArray.count;
+}
+
+- (UIView *)swipeView:(SwipeView *)swipeView cardAtIndex:(NSUInteger)index{
+    UIImageView *imageView = [[UIImageView alloc] init];
+//    imageView.clipsToBounds = YES;
+    UIImage *image = [UIImage imageNamed:self.imageNameArray[index]];
+//    [image roundImageWithCornerRadius:kWidthIphone7(8)];
+    
+    imageView.image = image;
+    
+    imageView.layer.masksToBounds = YES;
+    imageView.layer.cornerRadius = kWidthIphone7(8);
+    
+//    [LHUtils addShadowWithView:imageView];
+    return imageView;
+}
+
+
+- (OverlayView *)swipeView:(SwipeView *)swipeView
+        cardOverlayAtIndex:(NSUInteger)index
+{
+    return nil;
+}
+
+- (void)swipeView:(SwipeView *)swipeView didSwipeCardAtIndex:(NSUInteger)index inDirection:(SwipeDirection)direction{
+    
+//    if (index>=self.imageNameArray.count-3) {
+//        self.count = self.imageNameArray.count;
+//        [self.swipeView reloadData];
+//    }
+}
+
+- (void)swipeViewDidRunOutOfCards:(SwipeView *)swipeView{
+    [swipeView resetCurrentCardNumber];
+}
+
+
+- (void)swipeView:(SwipeView *)swipeView didSelectCardAtIndex:(NSUInteger)index
+{
+    NSLog(@"点击");
+}
+
+- (BOOL)swipeViewShouldApplyAppearAnimation:(SwipeView *)swipeView
+{
+    return YES;
+}
+
+- (BOOL)swipeViewShouldMoveBackgroundCard:(SwipeView *)swipeView
+{
+    return YES;
+}
+
+- (BOOL)swipeViewShouldTransparentizeNextCard:(SwipeView *)swipeView
+{
+    return YES;
+}
+
+- (POPPropertyAnimation *)swipeViewBackgroundCardAnimation:(SwipeView *)swipeView
+{
+    return nil;
+}
+
+
+- (SwipeView *)swipeView{
+    if (!_swipeView) {
+        _swipeView = [[SwipeView alloc] initWithFrame:CGRectMake(kBorderMargin, kHeightIphone7(24), kScreenSize.width-kBorderMargin*2, kHeightIphone7(220))];
+        _swipeView.delegate = self;
+        _swipeView.dataSource = self;
     }
-    return _longPressView;
+    return _swipeView;
+}
+
+- (NSArray *)imageNameArray{
+    if (!_imageNameArray) {
+        _imageNameArray = @[@"1.jpg",@"2.jpg",];
+    }
+    return _imageNameArray;
 }
 
 - (void)didReceiveMemoryWarning {

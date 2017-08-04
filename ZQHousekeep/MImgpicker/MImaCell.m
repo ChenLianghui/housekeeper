@@ -16,7 +16,8 @@
 - (void)awakeFromNib {
     // Initialization code
     [super awakeFromNib];
-    [self.btnCheckMark setImage:[UIImage imageNamed:@"ico_check_select@2x.png"] forState:UIControlStateSelected];
+    [self.btnCheckMark setImage:[UIImage imageNamed:@"ico_check_normal"] forState:UIControlStateNormal];
+    [self.btnCheckMark setImage:[UIImage imageNamed:@"ico_check_select"] forState:UIControlStateSelected];
 }
 
 - (void)setBtnSelectedHandle:(MBoolBlock)block {
@@ -26,6 +27,7 @@
 
 - (IBAction)actionBtn:(id)sender {
     if ([self.delegate arrayIsfulled] && !self.btnCheckMark.selected) {
+        
         return;
     }
     self.btnCheckMark.selected = !self.btnCheckMark.selected;

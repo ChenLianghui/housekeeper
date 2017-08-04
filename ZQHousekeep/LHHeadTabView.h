@@ -10,4 +10,6 @@
 
 @interface LHHeadTabView : UIView
 
+@property (nonatomic,copy)NSArray *titleArray;
+
 @end

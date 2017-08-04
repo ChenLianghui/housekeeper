@@ -67,6 +67,8 @@
     _HUD.customView = aCustomView;
     _HUD.delegate = self;
     _HUD.label.text = aLabel;
+    _HUD.label.font = [UIFont appFontThree];
+    _HUD.label.numberOfLines = 0;
     _HUD.completionBlock = block;
     [_HUD showAnimated:YES];
     [_HUD hideAnimated:YES afterDelay:duration];

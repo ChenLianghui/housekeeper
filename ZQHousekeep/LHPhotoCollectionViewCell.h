@@ -10,4 +10,11 @@
 
 @interface LHPhotoCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic,strong)UIImageView *profilePhoto;
+@property (nonatomic,strong)UIButton *closeButton;
+@property(nonatomic,strong) UIImageView *BigImageView;
+
+/** 查看大图 */
+- (void)setBigImageViewWithImage:(UIImage *)image;
+
 @end

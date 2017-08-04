@@ -7,7 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHSelectPhotoView.h"
 
-@interface LHEditPetView : UIView
+typedef void(^getHeightBlock)(CGFloat height);
+typedef void(^getSelectedImages)(NSArray *imagesArray);
+
+//@protocol LHEditPetViewDelegate <NSObject>
+//
+//- (void)getEditPetViewHeight:(CGFloat )height;
+//
+//@end
+
+
+@interface LHEditPetView : UIScrollView
+
+//@property (nonatomic,weak) id<LHEditPetViewDelegate> delegate;
+@property (nonatomic,strong)LHSelectPhotoView *photoView;
+@property (nonatomic,copy) getHeightBlock heightBlock;
+@property (nonatomic,copy) getSelectedImages imagesBlock;
+@property (nonatomic,strong)UITextField *typeTF;
+@property (nonatomic,strong)UITextField *speciesTF;
+@property (nonatomic,strong)UITextField *startTimeTF;
+@property (nonatomic,strong)UITextField *endTimeTF;
 
 @end

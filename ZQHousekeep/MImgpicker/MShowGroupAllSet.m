@@ -12,7 +12,7 @@
 
 
 //设置可添加图片最多个数!!!
-#define kMaxImageCount 9
+#define kMaxImageCount 6
 
 @interface MShowGroupAllSet ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,MImaCellDelegate>
 {
@@ -61,7 +61,7 @@
     
     [self.collectionView registerNib:[UINib nibWithNibName:MImaCellClassName bundle:nil] forCellWithReuseIdentifier:MImaCellClassName];
     
-    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(actionRightBar)];
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithTitle:@"confirm" style:UIBarButtonItemStylePlain target:self action:@selector(actionRightBar)];
     self.navigationItem.rightBarButtonItem = rightBar;
     
     if (_MaxCount<=0) {
@@ -217,6 +217,7 @@
 - (BOOL)arrayIsfulled{
     
     if (self.arrSelected.count+newSelected.count>=deleteImgs.count + _MaxCount) {
+        [self showFailed:[NSString stringWithFormat:@"You can only select up to %ld images",_MaxCount]];
         return YES;
     }
     return NO;

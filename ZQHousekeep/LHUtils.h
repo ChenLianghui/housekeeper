@@ -30,4 +30,9 @@ typedef enum : NSUInteger {
 
 + (void)addShadowWithView:(UIView *)view;
 
+//设置为头像有小图标的UIimageView
++ (void)createSmallIconHeaderImageWithImageView:(UIImageView *)imageView andImageName:(NSString *)imageName;
+
++ (CGSize) getSizeWithStr:(NSString *) str Width:(float)width Font:(UIFont *)font;
++ (CGSize) getSizeWithStr:(NSString *) str Height:(float)height Font:(UIFont *)font;
 @end

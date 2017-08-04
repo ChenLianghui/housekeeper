@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^selectBlock)(NSInteger tag);
+
 @interface LHSelectHeaderView : UIView
+
+@property (nonatomic,copy)NSArray *titleArray;
+@property (nonatomic,copy)selectBlock selectBlock;
+
+- (instancetype)initWithFrame:(CGRect)frame andTitleArray:(NSArray *)titleArray;
+
 
 @end

@@ -24,11 +24,11 @@
 
 //显示选择照片提示Sheet
 -(void)showImgPickerActionSheetInView:(UIViewController *)controller{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"选择照片" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"SelectPicture" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }];
-    UIAlertAction *actionCamera = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"拍照"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *actionCamera = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"Camera"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if (!imaPic) {
             imaPic = [[UIImagePickerController alloc] init];
         }
@@ -39,7 +39,7 @@
         }
         
     }];
-    UIAlertAction *actionAlbum = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"相册"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *actionAlbum = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"Photo album"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self loadImgDataAndShowAllGroup];
     }];
     [alertController addAction:actionCancel];

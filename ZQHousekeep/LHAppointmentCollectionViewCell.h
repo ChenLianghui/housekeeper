@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHAppointmentModel.h"
+#import "LHPetTrustModel.h"
 
 @interface LHAppointmentCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic,strong)LHAppointmentModel *appointModel;
+@property (nonatomic,strong)LHPetTrustModel *petModel;
 
 @end

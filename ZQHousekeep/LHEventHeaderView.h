@@ -10,4 +10,6 @@
 
 @interface LHEventHeaderView : UIView
 
+@property (nonatomic,assign)int currentNumber;
+
 @end

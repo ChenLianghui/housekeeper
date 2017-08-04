@@ -32,6 +32,11 @@
 
 - (UIImage *)roundImageWithCornerRadius:(CGFloat)cornerRadius;
 
+- (UIImage *)circleImage;
+
++ (UIImage *)circleImage:(NSString *)image;
+
+
 - (UIImage *)resizedImage:(CGSize)newSize interpolationQuality:(CGInterpolationQuality)quality;
 
 @end

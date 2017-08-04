@@ -10,4 +10,12 @@
 
 @interface LHUserModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *headImageUrl;
+@property (nonatomic,copy)NSString *name;
+@property (nonatomic,copy)NSString *nickName;
+@property (nonatomic,copy)NSString *address;
+@property (nonatomic,copy)NSString *email;
+@property (nonatomic,copy)NSString *phoneNumber;
+@property (nonatomic,copy)NSString *birthday;
+
 @end

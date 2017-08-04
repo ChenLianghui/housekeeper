@@ -8,6 +8,13 @@
 
 #import "LHEditPetInfoView.h"
 
+@interface LHEditPetInfoView ()
+
+@property (nonatomic,strong)UICollectionView *imageCollectionView;
+
+
+@end
+
 @implementation LHEditPetInfoView
 
 /*

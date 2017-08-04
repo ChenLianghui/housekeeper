@@ -36,6 +36,7 @@
 #define kScreenRatio (kScreenWidth / 320)
 #define kLineWidth (1.0f/kScreenScale)
 #define kBorderMargin kWidthIphone7(17)
+#define kCellContentMargin kWidthIphone7(15)
 #define kContentMargin kSizeFrom750(15)
 
 #define kWidthIphone7(x) (x * kScreenWidth / 375.0)

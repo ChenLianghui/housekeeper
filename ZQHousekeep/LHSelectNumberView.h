@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol  LHSelectNumberViewDelegate <NSObject>
+
+@optional
+- (void)hadReachedTheLowestNumber;
+- (void)hadReachedTheHighestNumber;
+
+@end
+
 @interface LHSelectNumberView : UIView
+
+@property (nonatomic,assign)int minNumber;
+@property (nonatomic,assign)int maxNumber;
+@property (nonatomic,weak)id<LHSelectNumberViewDelegate> delegate;
+
++ (instancetype)createNumberViewWithMinNumber:(int)minNumber maxNumbder:(int)maxNumber;
 
 @end

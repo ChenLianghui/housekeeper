@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHSelectNumberView.h"
 
 @interface LHAppointmentInfoView : UIView
+
+@property (nonatomic,strong)UITextField *roomTF;
+@property (nonatomic,strong)LHSelectNumberView *numberView;
+@property (nonatomic,strong)UITextField *dateTF;
+@property (nonatomic,strong)UITextField *timeTF;
+@property (nonatomic,strong)UITextField *useTF;
 
 @end

@@ -12,7 +12,7 @@
 
 @property (nonatomic,copy)NSString *imageName;
 @property (nonatomic,copy)NSString *titleStr;
-@property (nonatomic,copy)NSString *hotStr;
-@property (nonatomic,copy)NSString *desStr;
+@property (nonatomic,copy)NSString *likeStr;
+@property (nonatomic,copy)NSString *joinStr;
 
 @end

@@ -183,6 +183,35 @@
     UIGraphicsEndImageContext();
     
     return image;
+//    CGRect rect = (CGRect){0.f, 0.f, self.size};
+//    
+//    UIGraphicsBeginImageContextWithOptions(self.size, NO, UIScreen.mainScreen.scale);
+//    CGContextAddPath(UIGraphicsGetCurrentContext(),
+//                     [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius].CGPath);
+//    CGContextClip(UIGraphicsGetCurrentContext());
+//    
+//    [self drawInRect:rect];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    
+//    UIGraphicsEndImageContext();
+//    
+//    return image;
+}
+
+- (UIImage *)circleImage{
+    UIGraphicsBeginImageContext(self.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+    CGContextAddEllipseInRect(ctx, rect);
+    CGContextClip(ctx);
+    [self drawInRect:rect];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
++ (UIImage *)circleImage:(NSString *)image{
+    return [[self imageNamed:image] circleImage];
 }
 
 //Creates a transform that will correctly rotate and translate for the passed orientation.

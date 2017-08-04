@@ -21,7 +21,7 @@ static float CardHeightScale = 0.8f;
     CGFloat _dragStartX;
     
     CGFloat _dragEndX;
-    
+        
 //    CGFloat _viewHeight;
 }
 @end
@@ -92,7 +92,7 @@ static float CardHeightScale = 0.8f;
     
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     
-    [self performDelegateMethod];
+//    [self performDelegateMethod];
 }
 
 #pragma mark -
@@ -129,8 +129,13 @@ static float CardHeightScale = 0.8f;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    _selectedIndex = indexPath.row;
-    [self scrollToCenter];
+    if (indexPath.row == _selectedIndex) {
+        
+        [self performDelegateMethod];
+    }else{
+        _selectedIndex = indexPath.row;
+        [self scrollToCenter];
+    }
 }
 
 #pragma mark -
@@ -181,7 +186,7 @@ static float CardHeightScale = 0.8f;
 - (void)switchToIndex:(NSInteger)index animated:(BOOL)animated {
     _selectedIndex = index;
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
-    [self performDelegateMethod];
+//    [self performDelegateMethod];
 }
 
 - (void)performDelegateMethod {

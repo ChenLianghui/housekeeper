@@ -10,4 +10,6 @@
 
 @interface LHActivityDetailViewController : LHBaseViewController
 
+@property (nonatomic,copy)NSString *VcTitle;
+
 @end

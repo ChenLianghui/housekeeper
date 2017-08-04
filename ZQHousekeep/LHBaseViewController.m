@@ -11,6 +11,9 @@
 
 @interface LHBaseViewController ()
 
+@property (nonatomic,strong)UIImageView *addImageView;
+
+
 @end
 
 @implementation LHBaseViewController
@@ -74,7 +77,17 @@
         }else{
             frame = CGRectMake(0, 0, 50, 40);
         }
+        BOOL isClose;
+        @WeakObj(isClose);
         LHButton *button = [LHButton buttonWithFrame:frame imageName:name andBlock:^{
+            @StrongObj(isClose);
+            if (!isClose) {
+                
+                button.transform = CGAffineTransformMakeRotation(M_PI_4);
+                isClose = !isClose;
+            }else{
+                button.transform = CGAffineTransformMakeRotation(-M_PI_4);
+            }
             if (block) {
                 block();
             }
@@ -100,13 +113,50 @@
     }
 }
 
+- (void)addPlusItemIsLeft:(BOOL)isleft withBlock:(myBlock)block{
+    CGRect frame;
+    if (isleft) {
+        frame = CGRectMake(0, 0, 40, 40);
+    }else{
+        frame = CGRectMake(0, 0, 40, 40);
+    }
+    __weak typeof(self)weakSelf = self;
+    LHButton *button = [LHButton buttonWithFrame:frame imageName:@"" andBlock:^{
+        [weakSelf rotatePlus];
+        if (block) {
+            block();
+        }
+    }];
+    _addImageView = [[UIImageView alloc] initWithFrame:button.bounds];
+    _addImageView.image = [UIImage imageNamed:@"add"];
+    [button addSubview:_addImageView];
+    UIView *buttonView = [[UIView alloc] initWithFrame:button.bounds];
+    [buttonView addSubview:button];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:buttonView];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)rotatePlus{
+    float angle = _isClose ? 0.0f : M_PI_4;
+    [UIView animateWithDuration:0.2 animations:^{
+        _addImageView.transform = CGAffineTransformMakeRotation(angle);
+    }];
+    _isClose = !_isClose;
+}
+
 - (UIView *)whiteView{
     if (!_whiteView) {
         _whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, kHeightIphone7(76))];
         _whiteView.backgroundColor = [UIColor whiteColor];
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, kHeightIphone7(76)-1, kScreenSize.width, kHeightIphone7(1))];
-        lineView.backgroundColor = [UIColor grayLineColor];
-        [_whiteView addSubview:lineView];
+        _WhitelineView = [[UIView alloc] init];
+        _WhitelineView.backgroundColor = [UIColor lightGrayColor];
+        [_whiteView addSubview:_WhitelineView];
+        
+        [_WhitelineView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(_whiteView);
+            make.height.equalTo(1);
+            make.top.equalTo(_whiteView.bottom).offset(-1);
+        }];
     }
     return _whiteView;
 }

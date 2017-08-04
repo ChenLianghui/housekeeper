@@ -10,4 +10,10 @@
 
 @interface LHPetTrustModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *imageNameStr;
+@property (nonatomic,copy)NSString *type;
+@property (nonatomic,copy)NSString *species;
+@property (nonatomic,copy)NSString *time;
+@property (nonatomic,copy)NSString *numberStr;
+
 @end

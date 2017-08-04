@@ -10,4 +10,8 @@
 
 @interface LHMemberModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *iconStr;
+@property (nonatomic,copy)NSString *nameStr;
+@property (nonatomic,copy)NSString *relationStr;
+
 @end

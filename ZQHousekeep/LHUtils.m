@@ -67,4 +67,56 @@
 //    view.layer.shadowRadius = kWidthIphone7(8);
 }
 
+
+/**
+ 设置为头像有小图标的UIimageView
+
+ @param imageView 已做过圆形处理的imageview
+ @param imageName 小图标的文件名
+ */
++ (void)createSmallIconHeaderImageWithImageView:(UIImageView *)imageView andImageName:(NSString *)imageName{
+    UIImageView *SmallImageView = [UIImageView new];
+    SmallImageView.backgroundColor = [UIColor whiteColor];
+    [imageView addSubview:SmallImageView];
+    
+    CGFloat offsetX = imageView.bounds.size.width/(2*sqrt(2));
+    [SmallImageView makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(imageView.centerX).offset(offsetX);
+        make.centerY.equalTo(imageView.centerY).offset(offsetX);
+        make.width.equalTo(kWidthIphone7(16));
+        make.height.equalTo(kWidthIphone7(16));
+    }];
+    
+    [SmallImageView setNeedsLayout];
+    [SmallImageView layoutIfNeeded];
+    
+    UIImage *image = [UIImage imageNamed:imageName];
+    SmallImageView.image = image;
+    SmallImageView.layer.masksToBounds = YES;
+    SmallImageView.layer.cornerRadius = SmallImageView.bounds.size.width/2;
+    SmallImageView.layer.borderColor = [UIColor backgroundColor].CGColor;
+    SmallImageView.layer.borderWidth = kWidthIphone7(1);
+}
+
+#pragma mark - 固定宽度和字体大小，获取label的frame
++ (CGSize) getSizeWithStr:(NSString *) str Width:(float)width Font:(UIFont *)font{
+    NSDictionary * attribute = @{NSFontAttributeName:font};
+    CGSize tempSize = [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:attribute
+                                        context:nil].size;
+    return tempSize;
+}
+
+#pragma mark - 固定高度和字体大小，获取label的frame
++ (CGSize) getSizeWithStr:(NSString *) str Height:(float)height Font:(UIFont *)font
+{
+    NSDictionary * attribute = @{NSFontAttributeName :font};
+    CGSize tempSize=[str boundingRectWithSize:CGSizeMake(MAXFLOAT, height)
+                                      options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                   attributes:attribute
+                                      context:nil].size;
+    return tempSize;
+}
+
 @end

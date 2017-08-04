@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ZQTabBarController.h"
+#import <IQKeyboardManager/IQKeyboardManager.h>
 
 @interface AppDelegate ()
 
@@ -21,7 +22,8 @@
     
     [self comeInToApp];
     [self.window makeKeyAndVisible];
-    
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 10.0f;
     return YES;
 }
 

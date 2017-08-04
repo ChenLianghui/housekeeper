@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHRepairModel.h"
 
 @interface LHRepairCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic,strong)LHRepairModel *model;
 
 @end

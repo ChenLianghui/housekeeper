@@ -12,9 +12,10 @@
 
 @property (nonatomic,strong)UIImageView *imageView;
 @property (nonatomic,strong)UILabel *titleLabel;
-@property (nonatomic,strong)UILabel *hotLabel;
-@property (nonatomic,strong)UILabel *desLabel;
-@property (nonatomic,strong)UIImageView *hotImageView;
+@property (nonatomic,strong)UILabel *likeLabel;
+@property (nonatomic,strong)UILabel *joinLabel;
+@property (nonatomic,strong)UIImageView *likeImageView;
+@property (nonatomic,strong)UIImageView *joinImageView;
 
 @end
 
@@ -39,52 +40,58 @@
     _titleLabel.textColor = [UIColor grayFontColor];
     [self.contentView addSubview:_titleLabel];
     
-    _hotLabel = [UILabel new];
-    _hotLabel.font = [UIFont appFontFive];
-    _hotLabel.textColor = [UIColor grayFontColor];
-    [self.contentView addSubview:_hotLabel];
+    _likeLabel = [UILabel new];
+    _likeLabel.font = [UIFont appFontFive];
+    _likeLabel.textColor = [UIColor grayFontColor];
+    [self.contentView addSubview:_likeLabel];
     
-    _desLabel = [UILabel new];
-    _desLabel.font = [UIFont appFontFour];
-    _desLabel.numberOfLines = 0;
-    _desLabel.textColor = [UIColor grayFontColor];
-    [self.contentView addSubview:_desLabel];
+    _joinLabel = [UILabel new];
+    _joinLabel.font = [UIFont appFontFive];
+    _joinLabel.textColor = [UIColor grayFontColor];
+    [self.contentView addSubview:_joinLabel];
     
-    _hotImageView = [UIImageView new];
-    _hotImageView.image = [UIImage imageNamed:@"activity_hot"];
-    [self.contentView addSubview:_hotImageView];
+    _likeImageView = [UIImageView new];
+    _likeImageView.image = [UIImage imageNamed:@"like1_gray"];
+    [self.contentView addSubview:_likeImageView];
+    
+    _joinImageView = [UIImageView new];
+    _joinImageView.image = [UIImage imageNamed:@"join1_gray"];
+    [self.contentView addSubview:_joinImageView];
     
     [_imageView makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.contentView);
-        make.height.equalTo(kHeightIphone7(125));
-    }];
-    
-    [_hotLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(-kWidthIphone7(6));
-        make.top.equalTo(_imageView.bottom).offset(kHeightIphone7(10));
-        make.width.equalTo(kWidthIphone7(25));
-        make.height.equalTo(kHeightIphone7(11));
-    }];
-    
-    [_hotImageView makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_hotLabel.left);
-        make.top.equalTo(_hotLabel.top);
-        make.width.equalTo(kWidthIphone7(9));
-        make.height.equalTo(kHeightIphone7(10));
+        make.height.equalTo(kHeightIphone7(150));
     }];
     
     [_titleLabel makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(kWidthIphone7(6));
         make.top.equalTo(_imageView.bottom).offset(kHeightIphone7(5));
-        make.right.equalTo(_hotImageView.left);
+        make.right.equalTo(-kWidthIphone7(6));
         make.height.equalTo(kHeightIphone7(16));
     }];
     
-    [_desLabel makeConstraints:^(MASConstraintMaker *make) {
+    [_likeImageView makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_titleLabel.left);
-        make.top.equalTo(_titleLabel.bottom).offset(kHeightIphone7(3));
-        make.centerX.equalTo(self.contentView.centerX);
-        make.bottom.equalTo(self.contentView.bottom).offset(-kHeightIphone7(5));
+        make.top.equalTo(_titleLabel.bottom).offset(kHeightIphone7(5));
+        make.width.equalTo(kWidthIphone7(9));
+        make.height.equalTo(kHeightIphone7(8));
+    }];
+    
+    [_likeLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_likeImageView.right).offset(kWidthIphone7(4));
+        make.top.height.equalTo(_likeImageView);
+        make.width.equalTo(kWidthIphone7(30));
+    }];
+    
+    [_joinImageView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_likeLabel.right).offset(kWidthIphone7(5));
+        make.top.height.equalTo(_likeImageView);
+        make.width.equalTo(kWidthIphone7(5));
+    }];
+    
+    [_joinLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_joinImageView.right).offset(kWidthIphone7(4));
+        make.width.top.height.equalTo(_likeLabel);
     }];
     
     [self layoutIfNeeded];
@@ -99,8 +106,8 @@
     _model = model;
     _imageView.image = [UIImage imageNamed:model.imageName];
     _titleLabel.text = model.titleStr;
-    _hotLabel.text = model.hotStr;
-    _desLabel.text = model.desStr;
+    _likeLabel.text = model.likeStr;
+    _joinLabel.text = model.joinStr;
 }
 
 @end

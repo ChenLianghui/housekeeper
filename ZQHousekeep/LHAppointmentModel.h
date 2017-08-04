@@ -10,4 +10,10 @@
 
 @interface LHAppointmentModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *imageName;
+@property (nonatomic,copy)NSString *roomName;
+@property (nonatomic,copy)NSString *useStr;
+@property (nonatomic,copy)NSString *timeStr;
+@property (nonatomic,copy)NSString *numberStr;
+
 @end

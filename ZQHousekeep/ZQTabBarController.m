@@ -36,22 +36,22 @@
     ZQHomeViewController *HomeVC = [[ZQHomeViewController alloc] init];
     HomeVC.title = @"Service";
     HomeVC.tabBarItem.title = @"Service";
-    HomeVC.tabBarItem.image = [UIImage imageNamed:@"main"];
-    HomeVC.tabBarItem.selectedImage = [UIImage imageNamed:@"main_selected"];
+    HomeVC.tabBarItem.image = [UIImage imageNamed:@"icon_service"];
+    HomeVC.tabBarItem.selectedImage = [UIImage imageNamed:@"icon_service_selected"];
     ZQNavigationController *HomeNAV = [[ZQNavigationController alloc] initWithRootViewController:HomeVC];
     
     ZQActivityViewController *activityVC = [[ZQActivityViewController alloc] init];
     activityVC.title = @"Activity";
     activityVC.tabBarItem.title =@"Activity";
-    activityVC.tabBarItem.image = [UIImage imageNamed:@"set"];
-    activityVC.tabBarItem.selectedImage = [UIImage imageNamed:@"set_selected"];
+    activityVC.tabBarItem.image = [UIImage imageNamed:@"icon_activity"];
+    activityVC.tabBarItem.selectedImage = [UIImage imageNamed:@"icon_activity_selected"];
     ZQNavigationController *activityNav = [[ZQNavigationController alloc] initWithRootViewController:activityVC];
     
     ZQFamilyViewController *familyVC = [[ZQFamilyViewController alloc] init];
-    familyVC.title = @"Family";
-    familyVC.tabBarItem.title = @"Family";
-    familyVC.tabBarItem.image = [UIImage imageNamed:@"mine"];
-    familyVC.tabBarItem.selectedImage = [UIImage imageNamed:@"mine_selected"];
+    familyVC.title = @"profile";
+    familyVC.tabBarItem.title = @"Profile";
+    familyVC.tabBarItem.image = [UIImage imageNamed:@"icon_profile"];
+    familyVC.tabBarItem.selectedImage = [UIImage imageNamed:@"icon_profile_selected"];
     ZQNavigationController *familyNav = [[ZQNavigationController alloc] initWithRootViewController:familyVC];
     
     self.viewControllers = @[activityNav,HomeNAV,familyNav];

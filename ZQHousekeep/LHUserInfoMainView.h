@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHUserModel.h"
+
+typedef void(^ClickIconBlock)();
 
 @interface LHUserInfoMainView : UIView
+
+@property (nonatomic,strong)UIImageView *imageView;
+@property (nonatomic,strong)LHUserModel *userModel;
+@property (nonatomic,copy)ClickIconBlock block;
+@property (nonatomic,strong)UITextField *BirthdayTF;
 
 @end

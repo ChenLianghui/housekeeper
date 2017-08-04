@@ -14,6 +14,10 @@
 #import "LHHomeCollectionViewCell.h"
 #import "LHHomeCollectionModel.h"
 #import "LHNoticeViewController.h"
+#import "LHVisitorsViewController.h"
+#import "LHAppointmentViewController.h"
+#import "LHPetTrustViewController.h"
+#import "LHRepairViewController.h"
 
 @interface ZQHomeViewController ()<XLCardSwitchDelegate,LHHomeMenuViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -42,6 +46,7 @@
         loginVC.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:(loginVC) animated:YES];
     }];
+    
 //    [self.view addSubview:self.mainView];
     [self.view addSubview:self.lineView];
     [self.view addSubview:self.collectionView];
@@ -61,6 +66,7 @@
 - (void)XLCardSwitchDidSelectedAt:(NSInteger)index {
     NSLog(@"选中了：%zd",index);
     LHNoticeViewController *noticeVC = [[LHNoticeViewController alloc] init];
+    noticeVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:noticeVC animated:YES];
 }
 
@@ -68,6 +74,57 @@
 
 - (void)ClickedMenuWithTheTag:(NSInteger)tag{
     NSLog(@"tag:%ld",tag);
+    switch (tag) {
+        case 0:
+        {
+            //repair
+            LHRepairViewController *repairVC = [[LHRepairViewController alloc] init];
+            repairVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:repairVC animated:YES];
+        }
+            break;
+        case 1:
+        {
+            //visitor
+            LHVisitorsViewController *visitor = [[LHVisitorsViewController alloc] init];
+            visitor.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:visitor animated:YES];
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        case 3:
+        {
+            //Appointment
+            LHAppointmentViewController *appointVC = [[LHAppointmentViewController alloc] init];
+            appointVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:appointVC animated:YES];
+        }
+            break;
+        case 4:
+        {
+            
+        }
+            break;
+        case 5:
+        {
+            //pet
+            LHPetTrustViewController *petVC = [[LHPetTrustViewController alloc] init];
+            petVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:petVC animated:YES];
+        }
+            break;
+        case 6:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - UICollectionViewDelegate && dataSource
@@ -124,7 +181,7 @@
         _cardSwitch.items = items;
         _cardSwitch.delegate = self;
         _cardSwitch.pagingEnabled = YES;
-        _cardSwitch.selectedIndex = 1;
+//        _cardSwitch.selectedIndex = 1;
     }
     return _cardSwitch;
 }
